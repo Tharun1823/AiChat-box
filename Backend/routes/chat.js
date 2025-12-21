@@ -2,6 +2,8 @@ import express from 'express';
 import Thread from '../models/Thread.js';
 import { processWithAgent } from '../agents/sigmaAgent.js';
 import { addDocumentToVector } from '../utils/pinecone.js';
+import { fileStore } from './fileUpload.js';
+
 const router = express.Router();
 
 //test route
@@ -82,8 +84,15 @@ router.post('/chat', async (req, res) => {
         // Get chat history for context
         const chatHistory = thread.messages.slice(-10); // Last 10 messages for context
 
-        // Process with LangChain agent
-        const agentResponse = await processWithAgent(message, chatHistory);
+        // Get uploaded file context if available
+        let fileContext = '';
+        if (fileStore && fileStore.has(threadId)) {
+            const fileData = fileStore.get(threadId);
+            fileContext = `\n\n[Uploaded File Context]\nFile: ${fileData.fileName}\nContent:\n${fileData.fullText}`;
+        }
+
+        // Process with LangChain agent (file context will be included)
+        const agentResponse = await processWithAgent(message, chatHistory, null, fileContext);
 
         // Add assistant response to thread
         thread.messages.push({ 

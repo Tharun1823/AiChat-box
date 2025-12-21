@@ -3,6 +3,7 @@ import 'dotenv/config';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import chatRoutes from './routes/chat.js';
+import fileUploadRoutes from './routes/fileUpload.js';
 import { initializePinecone } from './utils/pinecone.js';
 const app=express();
 const PORT = process.env.PORT || 8080;
@@ -46,6 +47,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use('/api', chatRoutes);
+app.use('/api', fileUploadRoutes);
 
 // Global error handler
 app.use((error, req, res, next) => {

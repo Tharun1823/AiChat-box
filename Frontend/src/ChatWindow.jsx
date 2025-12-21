@@ -1,5 +1,6 @@
 import "./ChatWindow.css";
 import Chat from "./Chat";
+import FileUpload from "./components/FileUpload";
 import { MyContext } from "./MyContext";
 import { useContext, useState, useEffect } from "react";
 import { ScaleLoader } from "react-spinners";
@@ -18,6 +19,7 @@ function ChatWindow() {
     setNewChat,
   } = useContext(MyContext);
   const [isLoading, setIsLoading] = useState(false);
+  const [uploadedFile, setUploadedFile] = useState(null);
 
   const getReply = async () => {
     if (!prompt.trim()) return;
@@ -90,6 +92,13 @@ function ChatWindow() {
       </div>
 
       <Chat />
+
+      <FileUpload 
+        threadId={currThreadId}
+        onFileUpload={setUploadedFile}
+        onFileRemove={() => setUploadedFile(null)}
+        uploadedFile={uploadedFile}
+      />
 
       {isLoading && (
         <div className="loaderContainer">

@@ -92,14 +92,17 @@ Current conversation:
   }
 };
 
-export const processWithAgent = async (input, chatHistory = [], streamCallback = null) => {
+export const processWithAgent = async (input, chatHistory = [], streamCallback = null, fileContext = '') => {
   try {
     // Initialize agent if not already done
     const executor = await initializeAgent();
 
     // Get relevant context from vector store
     const relevantDocs = await searchSimilarDocuments(input, 2);
-    const context = relevantDocs.map(doc => doc.pageContent).join('\n\n');
+    const vectorContext = relevantDocs.map(doc => doc.pageContent).join('\n\n');
+
+    // Combine vector context with file context
+    const context = fileContext ? `${vectorContext}\n${fileContext}` : vectorContext;
 
     // Format chat history
     const formattedHistory = chatHistory.map(msg => {
@@ -118,7 +121,8 @@ export const processWithAgent = async (input, chatHistory = [], streamCallback =
     console.log('Agent input prepared:', {
       inputType: typeof agentInput.input,
       contextType: typeof agentInput.context,
-      historyType: typeof agentInput.chat_history
+      historyType: typeof agentInput.chat_history,
+      hasFileContext: fileContext.length > 0
     });
 
     let finalAnswer = '';
