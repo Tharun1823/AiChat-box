@@ -1,15 +1,15 @@
 /* src/global.css */
 :root {
-  --bg-dark: #1e1e1e;
-  --bg-darker: #181818;
-  --bg-light: #252526;
-  --accent-primary: #569cd6;
-  --accent-secondary: #4ec9b0;
-  --text-primary: #e0e0e0;
-  --text-secondary: #858585;
-  --border-color: #2d2d2d;
-  --terminal-green: #4af626;
-  --code-bg: #1e1e1e;
+  --bg-dark: #1a1a1a;
+  --bg-darker: #212121;
+  --bg-light: #262626;
+  --accent-primary: #10a37f;
+  --accent-secondary: #0d9467;
+  --text-primary: #ececf1;
+  --text-secondary: #8e8ea0;
+  --border-color: #3f3f3f;
+  --terminal-green: #10a37f;
+  --code-bg: #1a1a1a;
 }
 
 * {
@@ -19,10 +19,12 @@
 }
 
 body {
-  font-family: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
   background-color: var(--bg-dark);
   color: var(--text-primary);
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 code {
@@ -37,6 +39,17 @@ code {
 
 ::-webkit-scrollbar-track {
   background: var(--bg-darker);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
 }
 
 ::-webkit-scrollbar-thumb {
