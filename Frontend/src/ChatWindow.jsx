@@ -1,6 +1,7 @@
 import "./ChatWindow.css";
 import Chat from "./Chat";
 import FileUpload from "./components/FileUpload";
+import VoiceInput from "./components/VoiceInput";
 import { MyContext } from "./MyContext";
 import { useContext, useState, useEffect } from "react";
 import { ScaleLoader } from "react-spinners";
@@ -113,6 +114,12 @@ function ChatWindow() {
             onFileUpload={setUploadedFile}
             onFileRemove={() => setUploadedFile(null)}
             uploadedFile={uploadedFile}
+          />
+          <VoiceInput 
+            onVoiceInput={(voiceText) => {
+              setPrompt(voiceText);
+            }}
+            disabled={isLoading}
           />
           <input
             placeholder="Ask anything..."
