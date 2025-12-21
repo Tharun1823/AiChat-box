@@ -23,30 +23,30 @@
 }
 
 .file-input-button:hover:not(.loading) {
-  background-color: #f0f0f0;
-  color: #565656;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #d1d5db;
 }
 
 .file-input-button:active:not(.loading) {
-  background-color: #e5e5e5;
+  background-color: rgba(255, 255, 255, 0.12);
 }
 
 .file-input-button.has-file {
-  color: #0070f3;
+  color: #10a37f;
 }
 
 .file-input-button.has-file:hover {
-  background-color: #e3f2fd;
-  color: #0050c0;
+  background-color: rgba(16, 163, 127, 0.1);
+  color: #10a37f;
 }
 
 .file-input-button.drag-active {
-  background-color: #e3f2fd;
-  color: #0070f3;
+  background-color: rgba(16, 163, 127, 0.15);
+  color: #10a37f;
 }
 
 .file-input-button.loading {
-  color: #0070f3;
+  color: #10a37f;
   cursor: not-allowed;
 }
 
@@ -55,8 +55,8 @@
   display: inline-block;
   width: 1rem;
   height: 1rem;
-  border: 2px solid #f0f0f0;
-  border-top: 2px solid #0070f3;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-top: 2px solid #10a37f;
   border-radius: 50%;
   animation: spin 0.6s linear infinite;
 }
@@ -68,7 +68,7 @@
 
 /* File badge - shows below input */
 .file-badge-container {
-  padding: 0 0.5rem;
+  padding: 0.5rem 0.5rem 0;
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
@@ -79,12 +79,20 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 0.75rem;
-  background-color: #f0f0f0;
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
   font-size: 0.85rem;
   font-weight: 500;
-  color: #333;
+  color: #e5e5e5;
   max-width: 100%;
+  backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+}
+
+.file-badge:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 .badge-icon {
@@ -97,12 +105,13 @@
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 200px;
+  color: #d1d5db;
 }
 
 .badge-remove {
   background: none;
   border: none;
-  color: #999;
+  color: #9ca3af;
   cursor: pointer;
   padding: 0;
   margin: 0 -0.25rem 0 0.25rem;
@@ -118,19 +127,20 @@
 }
 
 .badge-remove:hover {
-  background-color: #e0e0e0;
-  color: #333;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #f3f4f6;
 }
 
 /* Error tooltip */
 .file-error-tooltip {
   padding: 0.5rem 0.75rem;
-  background-color: #fee2e2;
-  border-left: 3px solid #dc2626;
+  background-color: rgba(239, 68, 68, 0.1);
+  border-left: 3px solid #ef4444;
   border-radius: 4px;
-  color: #7f1d1d;
+  color: #fca5a5;
   font-size: 0.8rem;
   margin: 0 0.5rem;
+  border: 1px solid rgba(239, 68, 68, 0.2);
 }
 
 /* Responsive */

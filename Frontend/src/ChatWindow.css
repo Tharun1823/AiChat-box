@@ -44,9 +44,9 @@
 }
 
 .chatInput {
-  padding: 15px;
-  background-color: var(--bg-light);
-  border-top: 1px solid var(--border-color);
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
   position: sticky;
   bottom: 0;
 }
@@ -54,12 +54,14 @@
 .InputBox {
   display: flex;
   align-items: center;
-  background-color: var(--bg-darker);
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   overflow: hidden;
   gap: 0.5rem;
   padding: 0.5rem;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
 }
 
 .InputBox input {
@@ -74,7 +76,7 @@
 }
 
 .InputBox input::placeholder {
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .InputBox input:focus {
@@ -89,15 +91,21 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.2s ease;
   border-radius: 6px;
   width: 2.5rem;
   height: 2.5rem;
   flex-shrink: 0;
+  border: none;
 }
 
 #submit:hover {
   background-color: var(--accent-secondary);
+  transform: scale(1.05);
+}
+
+#submit:active {
+  transform: scale(0.98);
 }
 
 .info {
