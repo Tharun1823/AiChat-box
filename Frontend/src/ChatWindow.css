@@ -53,20 +53,24 @@
 
 .InputBox {
   display: flex;
+  align-items: center;
   background-color: var(--bg-darker);
   border-radius: 8px;
   border: 1px solid var(--border-color);
   overflow: hidden;
+  gap: 0.5rem;
+  padding: 0.5rem;
 }
 
 .InputBox input {
   flex: 1;
   background: transparent;
   border: none;
-  padding: 12px 15px;
+  padding: 8px 10px;
   color: var(--text-primary);
   font-family: inherit;
   font-size: 0.9rem;
+  min-width: 0;
 }
 
 .InputBox input::placeholder {
@@ -80,11 +84,16 @@
 #submit {
   background-color: var(--accent-primary);
   color: var(--bg-dark);
-  padding: 0 15px;
+  padding: 0.5rem;
   display: flex;
   align-items: center;
+  justify-content: center;
   cursor: pointer;
   transition: background-color 0.2s;
+  border-radius: 6px;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
 }
 
 #submit:hover {

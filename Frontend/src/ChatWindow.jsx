@@ -93,13 +93,6 @@ function ChatWindow() {
 
       <Chat />
 
-      <FileUpload 
-        threadId={currThreadId}
-        onFileUpload={setUploadedFile}
-        onFileRemove={() => setUploadedFile(null)}
-        uploadedFile={uploadedFile}
-      />
-
       {isLoading && (
         <div className="loaderContainer">
           <ScaleLoader
@@ -115,6 +108,12 @@ function ChatWindow() {
 
       <div className="chatInput">
         <div className="InputBox">
+          <FileUpload 
+            threadId={currThreadId}
+            onFileUpload={setUploadedFile}
+            onFileRemove={() => setUploadedFile(null)}
+            uploadedFile={uploadedFile}
+          />
           <input
             placeholder="Ask anything..."
             value={prompt}

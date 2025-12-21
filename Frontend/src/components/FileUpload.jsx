@@ -109,71 +109,55 @@ const FileUpload = ({ threadId, onFileUpload, onFileRemove, uploadedFile }) => {
   };
 
   return (
-    <div className="file-upload-container">
-      {!uploadedFile ? (
-        <div
-          className={`file-upload-area ${dragActive ? 'drag-active' : ''}`}
-          onDragEnter={handleDrag}
-          onDragLeave={handleDrag}
-          onDragOver={handleDrag}
-          onDrop={handleDrop}
-        >
-          <input
-            ref={fileInputRef}
-            type="file"
-            onChange={handleInputChange}
-            accept=".pdf,.docx,.doc"
-            disabled={loading}
-            style={{ display: 'none' }}
-          />
-          
-          <button
-            className="upload-button"
-            onClick={() => fileInputRef.current?.click()}
-            disabled={loading}
-            title="Upload PDF or DOCX file"
-          >
-            {loading ? (
-              <>
-                <span className="loading-spinner"></span>
-                Uploading...
-              </>
-            ) : (
-              <>
-                <span className="upload-icon">📎</span>
-                {dragActive ? 'Drop file here' : 'Upload PDF or DOCX'}
-              </>
-            )}
-          </button>
-          
-          <p className="upload-hint">
-            {dragActive ? 'Release to upload' : 'Drag and drop or click to browse'}
-          </p>
-        </div>
-      ) : (
-        <div className="file-info">
-          <div className="file-details">
-            <span className="file-icon">
+    <div className="file-upload-wrapper">
+      {/* Paperclip button with drag-drop area */}
+      <div
+        className={`file-input-button ${dragActive ? 'drag-active' : ''} ${loading ? 'loading' : ''}`}
+        onDragEnter={handleDrag}
+        onDragLeave={handleDrag}
+        onDragOver={handleDrag}
+        onDrop={handleDrop}
+        onClick={() => !loading && fileInputRef.current?.click()}
+        title={uploadedFile ? 'File uploaded' : 'Upload PDF or DOCX (click or drag)'}
+      >
+        <input
+          ref={fileInputRef}
+          type="file"
+          onChange={handleInputChange}
+          accept=".pdf,.docx,.doc"
+          disabled={loading}
+          style={{ display: 'none' }}
+        />
+        
+        {loading ? (
+          <span className="loading-spinner"></span>
+        ) : (
+          <i className={`fa-solid fa-paperclip ${uploadedFile ? 'has-file' : ''}`}></i>
+        )}
+      </div>
+
+      {/* File badge display below input */}
+      {uploadedFile && (
+        <div className="file-badge-container">
+          <div className="file-badge">
+            <span className="badge-icon">
               {uploadedFile.fileType === 'pdf' ? '📄' : '📝'}
             </span>
-            <div className="file-meta">
-              <p className="file-name">{uploadedFile.fileName}</p>
-              <p className="file-size">
-                {(uploadedFile.textLength / 1024).toFixed(2)} KB of text extracted
-              </p>
-            </div>
+            <span className="badge-name">{uploadedFile.fileName}</span>
+            <button
+              className="badge-remove"
+              onClick={handleRemoveFile}
+              title="Remove file"
+              type="button"
+            >
+              ×
+            </button>
           </div>
-          <button
-            className="remove-button"
-            onClick={handleRemoveFile}
-            title="Remove uploaded file"
-          >
-            ✕
-          </button>
         </div>
       )}
 
-      {error && <div className="file-error">{error}</div>}
+      {/* Error message */}
+      {error && <div className="file-error-tooltip">{error}</div>}
     </div>
   );
 };
