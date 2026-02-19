@@ -4,7 +4,7 @@
 
 ## 🌐 Live Demo
 
-### � **[Try SigmaGPT Live](https://sigma-gpt-zhb6.vercel.app/)**
+### � **https://ai-chat-box-amber.vercel.app/**
 
 Experience the full power of SigmaGPT with:
 - 🧮 **Mathematical calculations** via integrated calculator
